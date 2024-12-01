@@ -5,40 +5,25 @@ def read_text_file(name):
     return content
 
 def separate_lines(lines):
-    left_list = []
-    right_list = []
-
-    for line in lines:
-        split = line.split()
-        left_list.append(int(split[0]))
-        right_list.append(int(split[1]))
-
-    left_list.sort()
-    right_list.sort()
-
+    left_list = [int(x.split()[0]) for x in lines]
+    right_list = [int(x.split()[1]) for x in lines]
     return left_list, right_list
+
+def part1(separated):
+    left_list = sorted(separated[0])
+    right_list = sorted(separated[1])
+    return sum(abs(left_list[i] - right_list[i]) for i in range(len(left_list)))
+
+def part2(separated):
+    left_list = separated[0]
+    right_list = separated[1]
+    return sum(left_list[i] * right_list.count(left_list[i]) for i in range(len(left_list)))
 
 def main():
     input_file = read_text_file("input")
-
     separated = separate_lines(input_file)
-
-    left_list = separated[0]
-    right_list = separated[1]
-
-    # total_distance = 0
-    # for i in range(len(left_list)):
-    #     distance = abs(left_list[i] - right_list[i])
-    #     total_distance += distance
-
-    # print(total_distance)
-
-    similarity_score = 0
-    for i in range(len(left_list)):
-        right_count = right_list.count(left_list[i])
-        similarity_score += left_list[i] * right_count
-
-    print(similarity_score)
+    print("Part 1:", part1(separated))
+    print("Part 2:", part2(separated))
 
 if __name__ == "__main__":
     main()
