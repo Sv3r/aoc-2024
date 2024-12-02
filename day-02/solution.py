@@ -6,8 +6,8 @@ def read_text_file(name):
 
 def parse_input(filename):
     input_file = read_text_file(filename)
-    levels = [x.split() for x in input_file]
-    return levels
+    reports = [x.split() for x in input_file]
+    return reports
 
 def sign(x):
     return (x > 0) - (x < 0)
