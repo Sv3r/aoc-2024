@@ -1,8 +1,6 @@
-def read_text_file(name):
-    text_file = name + ".txt"
-    with open(text_file) as file:
-        content = file.read().splitlines()
-    return content
+def read_text_file(filename):
+    with open(f"{filename}.txt", 'r') as file:
+        return file.read().splitlines()
 
 def separate_lines(lines):
     left_list = [int(x.split()[0]) for x in lines]
